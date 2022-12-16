@@ -9,5 +9,10 @@ point_x1 = int(input('Введите координаты Х первой точ
 point_y1 = int(input('Введите координаты Y первой точки: '))
 point_x2 = int(input('Введите координаты Х второй точки: '))
 point_y2 = int(input('Введите координаты Y второй точки: '))
-distance = (round(sqrt(((point_x1 - point_x2) ** 2) + ((point_y1 - point_y2) ** 2)), 2))
+distance = (round(
+    sqrt(
+        ((point_x1 - point_x2) ** 2) +
+        ((point_y1 - point_y2) ** 2)
+    ), 2)
+            )
 print(distance)
