@@ -82,7 +82,7 @@ def check_win(smb):
 
 def check_line(a1, a2, a3, smb):
     if a1['text'] == smb and a2['text'] == smb and a3['text'] == smb:
-        a1['background'] = a2['background'] = a3['background'] = 'pink'
+        a1['background'] = a2['background'] = a3['background'] = 'blue'
         global game_run
         game_run = False
 
@@ -92,7 +92,7 @@ for row in range(3):
     for col in range(3):
         button = Button(root, text=' ', width=4, height=2,
                         font=('Verdana', 20, 'bold'),
-                        background='lavender',
+                        background='light blue',
                         command=lambda row=row, col=col: click(row, col))
         button.grid(row=row, column=col, sticky='nsew')
         line.append(button)
