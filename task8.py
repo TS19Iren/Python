@@ -5,7 +5,8 @@
 number = input('Введите число: ')
 sum = 0
 for c in number:
-
     if c != ',' and c != '.':
         sum = sum + float(c)
 print(int(sum))
+
+

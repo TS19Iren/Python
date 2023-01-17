@@ -17,3 +17,4 @@ my_list = []
 for i in range (-number,number+abs(number)//number , abs(number)//number):
     my_list.append(i)
 print(*my_list, sep=', ')
+
