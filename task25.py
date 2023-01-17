@@ -3,7 +3,7 @@ import random
 
 root = Tk()
 root.title('Criss-cross')
-game_run = True
+is_game_over = True
 field = []
 cross_count = 0
 
@@ -13,20 +13,20 @@ def new_game():
     for row in range(3):
         for col in range(3):
             field[row][col]['text'] = ' '
-            field[row][col]['background'] = 'lavender'
-    global game_run
+            field[row][col]['background'] = 'red'
+    global is_game_over
     game_run = True
     global cross_count
     cross_count = 0
 
 
 def click(row, col):
-    if game_run and field[row][col]['text'] == ' ':
+    if is_game_over and field[row][col]['text'] == ' ':
         field[row][col]['text'] = 'X'
         global cross_count
         cross_count += 1
         check_win('X')
-        if game_run and cross_count < 5:
+        if is_game_over and cross_count < 5:
             computer_move()
             check_win('O')
 
@@ -83,7 +83,7 @@ def check_win(smb):
 def check_line(a1, a2, a3, smb):
     if a1['text'] == smb and a2['text'] == smb and a3['text'] == smb:
         a1['background'] = a2['background'] = a3['background'] = 'blue'
-        global game_run
+        global is_game_over
         game_run = False
 
 
@@ -92,7 +92,7 @@ for row in range(3):
     for col in range(3):
         button = Button(root, text=' ', width=4, height=2,
                         font=('Verdana', 20, 'bold'),
-                        background='light blue',
+                        background='green',
                         command=lambda row=row, col=col: click(row, col))
         button.grid(row=row, column=col, sticky='nsew')
         line.append(button)
