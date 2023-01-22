@@ -1,4 +1,3 @@
-import model
 def main_menu() -> int:
     print('Главное меню.')
     menu_list = ['Показать все контакты',
@@ -26,11 +25,13 @@ def show_all(db: list):
                 print(f'{v}', end=' ')
             print()
 
-def delete_contact():
-    show_all(model.db_list)
+
+def delete_contact(db_list: list):
+    show_all(db_list)
     id_contact_to_del = int(input('Введите номер удаляемого контакта: '))
-    model.db_list.pop(id_contact_to_del-1)
-    show_all(model.db_list)
+    db_list.pop(id_contact_to_del - 1)
+    show_all(db_list)
+
 
 def db_success(db: list):
     if db:
@@ -55,15 +56,18 @@ def create_contact():
     new_contact['comment'] = input('\tВведите комментарий >: ')
     return new_contact
 
-def change_contact():
-    show_all(model.db_list)
+
+def change_contact(db_list):
+    show_all(db_list)
     id_contact_to_change = int(input('Введите номер изменяемого контакта: '))
-    change = int(input('Чтобы изменить фамилию, нажмите - 1, имя - 2, телефон - 3, комментарий - 4. Что будем менять? '))
-    while change<0 or change>4:
+    change = int(
+        input('Чтобы изменить фамилию, нажмите - 1, имя - 2, телефон - 3, комментарий - 4. Что будем менять? '))
+    while change < 0 or change > 4:
         change = int(
-            input('Укажите номер изменяемого параметра: фамилия - 1, имя - 2, телефон - 3, комментарий - 4. Что будем менять? '))
+            input(
+                'Укажите номер изменяемого параметра: фамилия - 1, имя - 2, телефон - 3, комментарий - 4. Что будем менять? '))
     changed_info = input('Укажите измененные данные: ')
-    contact_to_change = find_contact_by_index(id_contact_to_change-1, model.db_list)
+    contact_to_change = find_contact_by_index(id_contact_to_change - 1, db_list)
     match change:
         case 1:
             contact_to_change['lastname'] = changed_info
@@ -73,10 +77,12 @@ def change_contact():
             contact_to_change['phone'] = changed_info
         case 4:
             contact_to_change['comment'] = changed_info
-    show_all(model.db_list)
-    model.write_db_file()
+    show_all(db_list)
+
+
 def find_contact_by_index(index: int, db: list):
     return db[index]
+
 
 def find_contact(db: list):
     value = input('Введите текст: ')
@@ -90,4 +96,9 @@ def find_contact(db: list):
             continue
         if value == i['firstname']:
             result.append(i)
-    print(f'Найден контакт: {result}')
+    if len(result) == 0:
+        print('Запрашиваемый элемент не найден')
+    else:
+        for elem in result:
+            print(
+                f"Фамилия: {elem['lastname']}, Имя: {elem['firstname']}, Телефон: {elem['phone']}, Комментарий: {elem['comment']}")
