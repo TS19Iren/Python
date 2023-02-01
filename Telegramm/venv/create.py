@@ -1,4 +1,6 @@
-from aiogram import Bot, Dispatcher, executor, types
+import os
 
-bot = Bot("")
+from aiogram import Bot, Dispatcher
+
+bot = Bot(os.environ['BOT_TOKEN'])
 dp = Dispatcher(bot)
